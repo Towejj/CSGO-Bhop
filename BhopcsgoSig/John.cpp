@@ -77,11 +77,8 @@ int main()
 	int godown = 4; 
 	while (true)
 	{
-		printf("Willy\n");
 		while (GetAsyncKeyState(VK_SPACE) & 0x8000)
 		{ 
-			printf("penis\n");
-			
 			pfnNtReadVirtualMemory(hProcess, (PVOID)(dwLocalPlayer + hazedumper::netvars::m_fFlags), &m_fFlags, 4, NULL);
 
 
