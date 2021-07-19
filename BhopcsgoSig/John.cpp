@@ -67,16 +67,14 @@ int main()
 	printf("[*] pid: %d\n", pid);
 	HANDLE hProcess = OpenProcess(PROCESS_ALL_ACCESS, FALSE, pid);
 	uintptr_t clint = GetModuleBaseAddress(pid, L"client.dll");
-	printf("[*] client.dll: 0x%x\n", clint);
-	uintptr_t dwLocalPlayer;
-	ReadProcessMemory(hProcess, (LPCVOID)(clint + hazedumper::signatures::dwLocalPlayer), &dwLocalPlayer, sizeof(uintptr_t), NULL);
-	printf("[*] dwLocalPlayer: 0x%x\n", dwLocalPlayer);
 
 	int m_fFlags;
 	int goup = 5;
 	int godown = 4; 
 	while (true)
 	{
+		ReadProcessMemory(hProcess, (LPCVOID)(clint + hazedumper::signatures::dwLocalPlayer), &dwLocalPlayer, sizeof(uintptr_t), NULL);
+		
 		while (GetAsyncKeyState(VK_SPACE) & 0x8000)
 		{ 
 			pfnNtReadVirtualMemory(hProcess, (PVOID)(dwLocalPlayer + hazedumper::netvars::m_fFlags), &m_fFlags, 4, NULL);
