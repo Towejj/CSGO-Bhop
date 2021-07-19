@@ -64,6 +64,16 @@ int main()
 	pfnNtWriteVirtualMemory = (TNtWriteVirtualMemory)GetProcAddress(GetModuleHandle(_T("ntdll.dll")), "NtWriteVirtualMemory");
 
 	int pid = GetCSPID(); 
+	while (pid == 0) 
+	{
+		printf("[*] CSGO IS NOT OPEN, WAITING...\n");
+		pid = GetCSPID();
+		if (pid != 0)
+		{
+			break;
+		}
+		Sleep(1000);
+	}
 	printf("[*] pid: %d\n", pid);
 	HANDLE hProcess = OpenProcess(PROCESS_ALL_ACCESS, FALSE, pid);
 	uintptr_t clint = GetModuleBaseAddress(pid, L"client.dll");
