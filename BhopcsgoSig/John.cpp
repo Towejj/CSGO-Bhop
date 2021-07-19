@@ -76,7 +76,6 @@ int main()
 	}
 	printf("[*] pid: %d\n", pid);
 	HANDLE hProcess = OpenProcess(PROCESS_ALL_ACCESS, FALSE, pid);
-	uintptr_t clint = GetModuleBaseAddress(pid, L"client.dll");
 	uintptr_t dwLocalPlayer;
 
 	int m_fFlags;
@@ -84,6 +83,7 @@ int main()
 	int godown = 4; 
 	while (true)
 	{
+		uintptr_t clint = GetModuleBaseAddress(pid, L"client.dll");
 		ReadProcessMemory(hProcess, (LPCVOID)(clint + hazedumper::signatures::dwLocalPlayer), &dwLocalPlayer, sizeof(uintptr_t), NULL);
 		
 		while (GetAsyncKeyState(VK_SPACE) & 0x8000)
