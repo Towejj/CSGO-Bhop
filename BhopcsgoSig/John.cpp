@@ -104,8 +104,7 @@ int main()
 		}
 
 	}
-
-
+	Sleep(1); // Sleep for 1ms, saves CPU time.
 }
 
 class xdbiqga {
