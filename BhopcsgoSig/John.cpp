@@ -67,6 +67,7 @@ int main()
 	printf("[*] pid: %d\n", pid);
 	HANDLE hProcess = OpenProcess(PROCESS_ALL_ACCESS, FALSE, pid);
 	uintptr_t clint = GetModuleBaseAddress(pid, L"client.dll");
+	uintptr_t dwLocalPlayer;
 
 	int m_fFlags;
 	int goup = 5;
